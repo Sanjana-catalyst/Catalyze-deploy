@@ -68,10 +68,10 @@ function Landing() {
   return (
     <div className='h-screen overflow-hidden'>
       <Navbar />
-      <div className='flex flex-col lg:flex-row lg:gap-80'>
+      <div className='flex flex-col lg:flex-row lg:gap-8'>
         <div className='lg:w-1/2'>
           <div className="text-left">
-            <h1 className="text-5xl font-semibold mt-60 ml-40 lg:mt-20 lg:ml-20 text-black">
+            <h1 className="text-5xl font-semibold mt-20 lg:mt-10 lg:ml-20 text-black">
               Connecting <span className='font-bold' style={{ color: '#60a5fa', fontWeight: 'bold' }}>{count.toLocaleString()}</span> <br />
               people with outstanding <br />
               Startups of <br />
@@ -88,21 +88,12 @@ function Landing() {
                 display: index <= chatIndex ? 'flex' : 'none', // Display chat bubble only if its index is less than or equal to chatIndex
               }}
             >
-              {/* {index % 2 === 0 && (
-                <div className="chat-image avatar" style={{ marginTop: '26px', marginRight: '6px', marginLeft: '6px'}}>
-                  <div className="w-10 rounded-full">
-                    <img alt="Tailwind CSS chat bubble component" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-                  </div>
-                </div> */}
-              {/* )} */}
-              <div className=''>
               <div
                 className={`chat ${index % 2 === 0 ? 'chat-start' : 'chat-end'} mr-2`}
                 style={{
-                  marginLeft: index % 2 === 0 ? '100px' : '55px',
-                  marginRight: index % 2 === 0 ? '180px' : '130px',
-                  marginTop: '0px', // Add margin bottom to separate chat bubbles
-                  marginBottom: '-10px'
+                  marginLeft: index % 2 === 0 ? '20px' : 'auto',
+                  marginRight: index % 2 === 0 ? 'auto' : '20px',
+                  marginBottom: '-8px', // Add margin bottom to separate chat bubbles
                 }}
               >
                 <div className="chat-header">
@@ -112,14 +103,6 @@ function Landing() {
                 <div className="chat-bubble text-white">{chat.message}</div>
                 <div className="chat-footer opacity-50">{chat.status}</div>
               </div>
-              </div>
-              {/* {index % 2 !== 0 && (
-                <div className="chat-image avatar" style={{ marginTop: '6px', marginLeft: '6px' }}>
-                  <div className="w-10 rounded-full">
-                    <img alt="Tailwind CSS chat bubble component" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-                  </div>
-                </div>
-              )} */}
             </div>
           ))}
         </div>
