@@ -83,10 +83,10 @@ function Landing() {
   return (
     <div className="h-screen overflow-hidden overflow-y-auto">
       <Navbar />
-      <div className="flex flex-col md:flex-row justify-between ">
-        <div className="flex justify-start ">
-          <div className="text-left">
-            <h1 className="text-5xl font-semibold mt-60 ml-40 text-black">
+      <div className="flex flex-col md:flex-row justify-between mt-16 md:mt-0">
+        <div className="flex justify-center md:justify-start">
+          <div className="text-center md:text-left">
+            <h1 className="text-3xl md:text-5xl font-semibold mt-8 md:mt-60 ml-4 md:ml-40 text-black">
               Connecting{" "}
               <span
                 className="font-bold"
