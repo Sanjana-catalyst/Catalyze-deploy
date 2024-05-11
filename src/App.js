@@ -11,7 +11,7 @@ function App() {
   
   
   return (
-    <div className='bg-white h-screen'>
+    <div className='bg-white h-screen overflow-y-auto'>
       <Routes>
         <Route element={<Login/>}path="/Login"> </Route>
         <Route element={<Signup/>}path="/Signup"> </Route>
