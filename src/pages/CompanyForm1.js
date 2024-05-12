@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { RiEyeFill, RiEyeOffFill } from "react-icons/ri";
 import Navbar from "./Navbar";
 
-function Login() {
+function CompanyForm1() {
   const navigate = useNavigate();
   const [companyName, setCompanyName] = useState("");
   const [domain, setDomain] = useState("");
@@ -83,7 +83,7 @@ function Login() {
                 placeholder="Enter your company name"
                 type="text"
                 id="companyName"
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-slate-700 focus:border-slate-700 bg-white sm:text-sm"
+                className="mt-1 block w-full text-black px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-slate-700 focus:border-slate-700 bg-white sm:text-sm"
                 value={companyName}
                 onChange={(e) => handleCompanyNameChange(e.target.value)}
               />
@@ -94,7 +94,7 @@ function Login() {
               <label className="block text-sm font-medium text-black" htmlFor="domain">Domain</label>
               <select
                 id="domain"
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-slate-700 focus:border-slate-700 bg-white sm:text-sm"
+                className={`mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-slate-700 focus:border-slate-700 bg-white sm:text-sm ${domain ? 'text-black' : ''}`}
                 value={domain}
                 onChange={(e) => handleDomainChange(e.target.value)}
               >
@@ -111,7 +111,7 @@ function Login() {
                 id="description"
                 placeholder="Few words about your company" // Placeholder added here
                 rows="5" // Increased number of rows
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-slate-700 focus:border-slate-700 bg-white sm:text-sm"
+                className="mt-1 block w-full text-black px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-slate-700 focus:border-slate-700 bg-white sm:text-sm"
                 value={description}
                 onChange={(e) => handleDescriptionChange(e.target.value)}
               />
@@ -135,4 +135,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default CompanyForm1;

@@ -116,7 +116,7 @@ function Signup() {
               <input
                 placeholder="Enter your email"
                 type="email"
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-slate-700 focus:border-slate-700 bg-white sm:text-sm"
+                className="mt-1 block w-full text-black px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-slate-700 focus:border-slate-700 bg-white sm:text-sm"
                 value={email}
                 onChange={(e) => handleEmailChange(e.target.value)}
               />
@@ -129,7 +129,7 @@ function Signup() {
                 <input
                   placeholder="Enter your password"
                   type={showPassword ? 'text' : 'password'}
-                  className={`w-full px-3 py-2 border border-gray-300 rounded-md bg-white shadow-sm focus:outline-none focus:ring-slate-700 focus:border-slate-700 sm:text-sm ${errors.password.length > 0 ? 'border' : ''}`}
+                  className={`w-full px-3 py-2 text-black border border-gray-300 rounded-md bg-white shadow-sm focus:outline-none focus:ring-slate-700 focus:border-slate-700 sm:text-sm ${errors.password.length > 0 ? 'border' : ''}`}
                   value={password}
                   onChange={(e) => handlePasswordChange(e.target.value)}
                 />
@@ -154,7 +154,7 @@ function Signup() {
               <input
                 placeholder="Confirm your password"
                 type="password"
-                className={`mt-1 block w-full px-3 py-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-slate-700 focus:border-slate-700 sm:text-sm ${errors.confirmPassword ? 'border' : ''}`}
+                className={`mt-1 block w-full text-black px-3 py-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-slate-700 focus:border-slate-700 sm:text-sm ${errors.confirmPassword ? 'border' : ''}`}
                 value={confirmPassword}
                 onChange={(e) => handleConfirmPasswordChange(e.target.value)}
               />
