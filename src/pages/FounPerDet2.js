@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { RiEyeFill, RiEyeOffFill } from "react-icons/ri";
 import Navbar from "./Navbar";
 
-function Login() {
+function FounderPerDet2() {
   const navigate = useNavigate();
   const [latestEducation, setLatestEducation] = useState("");
   const [latestExperience, setLatestExperience] = useState("");
@@ -48,7 +48,7 @@ function Login() {
         latestExperience: latestExperience
       };
       console.log("Form Data:", formData);
-      navigate("/Home");
+      navigate("/Achieve");
     }
   };
 
@@ -101,4 +101,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default FounderPerDet2;

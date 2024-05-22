@@ -89,7 +89,7 @@ function FounPerDet1() {
         pincode: pincode
       };
       console.log("Form Data:", formData);
-      navigate("/Home");
+      navigate("/FounPerDet2");
     }
   };
 

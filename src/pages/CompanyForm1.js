@@ -66,7 +66,7 @@ function CompanyForm1() {
         description: description
       };
       console.log("Form Data:", formData);
-      navigate("/Home");
+      navigate("/CompanyForm2");
     }
   };
 
@@ -99,8 +99,16 @@ function CompanyForm1() {
                 onChange={(e) => handleDomainChange(e.target.value)}
               >
                 <option value="" disabled hidden>Select a domain</option>
+                <option value="healthcare">Healthcare</option>
+                <option value="software">Software</option>
+                <option value="eCommerce">ECommerce</option>
+                <option value="entertainment">Entertainment</option>
+                <option value="fintech">Fintech</option>
+                <option value="technology">Technology</option>
+                <option value="education">Education</option>
+                <option value="energy">Energy</option>
                 <option value="agriculture">Agriculture</option>
-                <option value="business">Business</option>
+                <option value="logistics">Logistics</option>
               </select>
               {errors.domain && <div className="text-red-500">{errors.domain}</div>}
             </div>

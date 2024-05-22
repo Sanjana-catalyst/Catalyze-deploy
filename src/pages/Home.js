@@ -8,7 +8,7 @@ function Main() {
     <div>
       <Navbar1 />
       <div className="flex justify-center mt-60 gap-10 ">
-      <a href="http://localhost:3000/CompanyForm">
+      <a href="http://localhost:3000/CompanyForm1">
       <div className="card w-96 h-80 bg-white shadow-xl">
       <button type="button" class="bg-gradient-to-r from-rose-200 to-blue-200 h-screen rounded-lg hover:from-rose-300 hover:to-blue-300 ...">
       

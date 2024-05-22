@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 
-function Login() {
+function Achieve() {
   const navigate = useNavigate();
   const [street, setStreet] = useState("");
   const [landmark, setLandmark] = useState("");
@@ -53,7 +53,9 @@ function Login() {
           <h1 className="text-3xl font-semibold text-center text-black">Achievements of the company</h1>
           <form className="mt-6" onSubmit={handleSubmit}>
             <div className="mb-4">
-              <p className="block text-sm font-medium text-black mb-2">Description</p>
+              <p className="block text-sm font-medium text-black mb-2">
+                Achievement 1 <span className="text-red-500">*</span>
+              </p>
               <textarea
                 placeholder="Enter your achievement"
                 rows="3"
@@ -64,6 +66,11 @@ function Login() {
                 onChange={(e) => handleStreetChange(e.target.value)} // Updated onChange handler
               />
               {errors.street && <div className="text-red-500">{errors.street}</div>}
+            </div>
+            <div className="mb-4">
+              <p className="block text-sm font-medium text-black mb-2">
+                Achievement 2
+              </p>
               <textarea
                 placeholder="Enter your achievement"
                 type="text"
@@ -82,7 +89,6 @@ function Login() {
                 Next
               </button>
             </div>
-            
           </form>
         </div>
       </div>
@@ -90,4 +96,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Achieve;

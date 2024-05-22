@@ -10,11 +10,9 @@ import Achieve from './pages/Achieve';
 import CompanyForm1 from './pages/CompanyForm1';
 import CompanyForm2 from './pages/CompanyForm2';
 import CompanyForm3 from './pages/CompanyForm3';
-import Footer from './pages/Footer';
 
 function App() {
-  
-  
+
   return (
     <div className='bg-white h-screen overflow-hidden overflow-y-auto'>
       <Routes>
@@ -30,7 +28,7 @@ function App() {
         <Route element={<Landing/>}path="/"> </Route>
 
       </Routes>
-      <Footer />
+      
 
     </div>
   )

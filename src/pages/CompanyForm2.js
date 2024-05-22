@@ -87,7 +87,7 @@ function CompanyForm2() {
         skillSet: skillSet
       };
       console.log("Form Data:", formData);
-      navigate("/Home");
+      navigate("/CompanyForm3");
     }
   };
 
@@ -157,11 +157,13 @@ function CompanyForm2() {
                   <FaPlus className="w-4 h-4 " />
                 </button>
               </div>
-              <ul>
-                {skillSet.map((skill, index) => (
-                  <li key={index}>{skill}</li>
-                ))}
-              </ul>
+              {skillSet.length > 0 && (
+                <ul className="max-h-32 overflow-y-auto border border-gray-300 rounded-md p-2">
+                  {skillSet.map((skill, index) => (
+                    <li key={index}>{skill}</li>
+                  ))}
+                </ul>
+              )}
             </div>
             <div className="mb-6 flex flex-row-reverse">
               <button

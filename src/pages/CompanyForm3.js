@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 
-function TeamDetailsForm() {
+
+function CompanyForm3() {
   const navigate = useNavigate();
   const [members, setMembers] = useState([{ name: "", designation: "", socialLink: "" }]);
   const [errors, setErrors] = useState([{ name: "", designation: "", socialLink: "" }]);
   const [showValidationMessage, setShowValidationMessage] = useState(false);
+  const [testLinkError, setTestLinkError] = useState("");
 
   const validateForm = () => {
     let isValid = true;
@@ -29,10 +31,10 @@ function TeamDetailsForm() {
       }
 
       if (!socialLink.trim()) {
-        newErrors[index].socialLink = "Please enter a socialLink";
+        newErrors[index].socialLink = "Please enter a social link";
         isValid = false;
       } else {
-        newErrors[index].socialLink = ""; // Corrected from designation to socialLink
+        newErrors[index].socialLink = "";
       }
     });
 
@@ -44,6 +46,7 @@ function TeamDetailsForm() {
     e.preventDefault();
     if (validateForm()) {
       console.log("Team Details:", members);
+      navigate("/FounPerDet1");
       // Redirect or further actions can be placed here
     }
   };
@@ -61,6 +64,16 @@ function TeamDetailsForm() {
       setMembers([...members, { name: "", designation: "", socialLink: "" }]);
       setErrors([...errors, { name: "", designation: "", socialLink: "" }]);
       setShowValidationMessage(false);
+    }
+  };
+
+  const handleTestLink = () => {
+    const lastMember = members[members.length - 1];
+    if (lastMember.socialLink.trim()) {
+      window.open(lastMember.socialLink, "_blank");
+      setTestLinkError("");
+    } else {
+      setTestLinkError("Please provide the social profile link.");
     }
   };
 
@@ -104,7 +117,7 @@ function TeamDetailsForm() {
                     id={`socialLink${index}`}
                     type="text"
                     placeholder="Enter social profile link"
-                    className="mt-1 block w-full px-3 py-2 text-black border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-slate-700 focus:border-slate-700 bg-white sm:text-sm"
+                    className={`mt-1 block w-full px-3 py-2 text-black border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-slate-700 focus:border-slate-700 bg-white sm:text-sm ${errors[index].socialLink ? "border-red-500" : ""}`}
                     value={member.socialLink}
                     onChange={(e) => handleInputChange(index, "socialLink", e.target.value)}
                   />
@@ -117,12 +130,17 @@ function TeamDetailsForm() {
                 <p className="text-red-500 text-sm">Please fill out the fields before adding another member.</p>
               </div>
             )}
+            {testLinkError && (
+              <div className="mb-6">
+                <p className="text-red-500 text-sm">{testLinkError}</p>
+              </div>
+            )}
             <div className="form-field">
               <div className="form-control justify-between">
                 <label className="form-label">
                   <p
-                    className="text-m text-blue-600 hover:text-blue-600 hover:underline focus:outline-none pb-5 pr-10"
-                    // onClick={}
+                    className="text-m text-blue-600 hover:text-blue-600 hover:underline focus:outline-none pb-5 pr-10 cursor-pointer"
+                    onClick={handleTestLink}
                   >
                     Test link
                   </p>
@@ -130,7 +148,7 @@ function TeamDetailsForm() {
                 type="button"
                 onClick={addMember}>
                   <p
-                    className="text-m text-black ml-10 hover:text-gray-900 hover:underline focus:outline-none pb-5 pr-10"
+                    className="text-m text-black ml-10 hover:text-gray-900 hover:underline focus:outline-none pb-5 pr-10 cursor-pointer"
                     // onClick={}
                   >
                     Add member
@@ -155,4 +173,4 @@ function TeamDetailsForm() {
   );
 }
 
-export default TeamDetailsForm;
+export default CompanyForm3;
