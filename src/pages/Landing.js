@@ -1,30 +1,31 @@
 import Navbar from "./Navbar";
 import React, { useState, useEffect } from "react";
+import Contact from './Contact'
 
 function Landing() {
   const [chatIndex, setChatIndex] = useState(0);
   const [chats, setChats] = useState([
     {
-      name: "Admin",
+      name: "User",
       time: "",
       message: "You were the Chosen One!",
       status: "",
     },
-    { name: "User", time: "", message: "I hate you!", status: "" },
+    { name: "Catalyze", time: "", message: "I hate you!", status: "" },
     {
-      name: "Admin",
+      name: "User",
       time: "",
       message: "You were the Chosen One!",
       status: "",
     },
-    { name: "User", time: "", message: "I hate you!", status: "" },
+    { name: "Catalyze", time: "", message: "I hate you!", status: "" },
     {
-      name: "Admin",
+      name: "User",
       time: "",
       message: "You were the Chosen One!",
       status: "",
     },
-    { name: "User", time: "", message: "I hate you!", status: "" },
+    { name: "Catalyze", time: "", message: "I hate you!", status: "" },
     // Add more chat objects as needed
   ]);
 
@@ -115,7 +116,7 @@ function Landing() {
                 display: index <= chatIndex ? "flex" : "none", // Display chat bubble only if its index is less than or equal to chatIndex
               }}
             >
-              {index % 2 === 0 && (
+              {/* {index % 2 === 0 && (
                 <div
                   className="chat-image avatar"
                   style={{
@@ -127,11 +128,11 @@ function Landing() {
                   <div className="w-10 rounded-full">
                     <img
                       alt="Tailwind CSS chat bubble component"
-                      src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCxFrOAXsjjDeftyujtCiOyppmEtna2lTdsKDm2T5ahw&s"
                     />
                   </div>
                 </div>
-              )}
+              )} */}
               <div
                 className={`chat ${
                   index % 2 === 0 ? "chat-start" : "chat-end"
@@ -150,7 +151,7 @@ function Landing() {
                 <div className="chat-bubble text-white">{chat.message}</div>
                 <div className="chat-footer opacity-50">{chat.status}</div>
               </div>
-              {index % 2 !== 0 && (
+              {/* {index % 2 !== 0 && (
                 <div
                   className="chat-image avatar"
                   style={{ marginTop: "6px", marginLeft: "6px" }}
@@ -158,15 +159,16 @@ function Landing() {
                   <div className="w-10 rounded-full">
                     <img
                       alt="Tailwind CSS chat bubble component"
-                      src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCxFrOAXsjjDeftyujtCiOyppmEtna2lTdsKDm2T5ahw&s"
                     />
                   </div>
                 </div>
-              )}
+              )} */}
             </div>
           ))}
         </div>
       </div>
+      <Contact />
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { IoMdSettings } from "react-icons/io";
 import { HiMenuAlt3 } from 'react-icons/hi';
 
 function Navbar() {
@@ -28,6 +29,8 @@ function Navbar() {
     };
   }, []);
 
+  const isActive = (path) => location.pathname === path;
+
   return (
     <div className='bg-white'>
       <div className="navbar bg-white py-5 fixed w-full top-0 z-10 flex justify-between items-center">
@@ -40,15 +43,30 @@ function Navbar() {
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
           />
           {isDropdownOpen && (
-            <div className="absolute top-full right-0 bg-white shadow-md p-2">
-              <button onClick={() => navigateTo('/')} className="block py-2 px-4 text-lg text-black hover:bg-gray-100 focus:outline-none">Logout</button>
-              
+            <div className="absolute top-full right-0 bg-white shadow-md w-full">
+              <button onClick={() => navigateTo('/profile')} className={`block w-full py-2 px-4 text-lg ${isActive('/profile') ? 'text-blue-500' : 'text-black'} hover:text-blue-500 hover:underline focus:outline-none`}>Profile</button>
+              <button onClick={() => navigateTo('/settings')} className={`block w-full py-2 px-4 text-lg ${isActive('/settings') ? 'text-blue-500' : 'text-black'} hover:text-blue-500 hover:underline focus:outline-none`}>Settings</button>
+              <button onClick={() => navigateTo('/')} className="block w-full py-2 px-4 text-lg text-black hover:bg-gray-100 focus:outline-none">Logout</button>
             </div>
           )}
         </div>
         <div className="hidden md:flex items-center gap-5 pr-5">
-          <button onClick={() => navigateTo('/')} className="btn btn-primary rounded-md bg-blue-600 hover:bg-blue-400 px-4 py-2 text-lg text-white focus:outline-none">Logout</button>
-          
+          <button 
+            onClick={() => navigateTo('/profile')} 
+            className={`text-lg font-semibold ${isActive('/profile') ? 'text-blue-500' : 'text-black'} hover:text-blue-500 hover:underline focus:outline-none`}
+          >
+            Profile
+          </button>
+          <button 
+            onClick={() => navigateTo('/')} 
+            className="btn btn-primary rounded-md bg-blue-600 hover:bg-blue-400 px-4 py-2 text-lg text-white focus:outline-none"
+          >
+            Logout
+          </button>
+          <IoMdSettings 
+            className="text-4xl text-black cursor-pointer hover:text-blue-500"
+            onClick={() => navigateTo('/settings')}
+          />
         </div>
       </div>
     </div>

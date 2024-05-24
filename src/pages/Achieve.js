@@ -4,44 +4,50 @@ import Navbar from "./Navbar";
 
 function Achieve() {
   const navigate = useNavigate();
-  const [street, setStreet] = useState("");
-  const [landmark, setLandmark] = useState("");
-  const [errors, setErrors] = useState({ street: "", landmark: "" });
-
-  const navigateToSignup = () => {
-    navigate("/Signup");
-  };
+  const [achievements, setAchievements] = useState([{ text: "" }]);
+  const [errors, setErrors] = useState([{ text: "" }]);
+  const [showValidationMessage, setShowValidationMessage] = useState(false);
 
   const validateForm = () => {
-    const newErrors = { street: '' };
+    let isValid = true;
+    const newErrors = achievements.map(achievement => ({ text: "" }));
 
-    if (!street.trim()) {
-      newErrors.street = 'Please fill out this field';
-    }
+    achievements.forEach((achievement, index) => {
+      if (!achievement.text.trim()) {
+        newErrors[index].text = "Please fill out this field";
+        isValid = false;
+      }
+    });
 
     setErrors(newErrors);
-
-    return Object.values(newErrors).every(error => error === '');
-  };
-
-  const handleStreetChange = (value) => {
-    setStreet(value);
-    setErrors(prevErrors => ({ ...prevErrors, street: '' })); // Clear street error message
-  };
-
-  const handleLandmarkChange = (value) => {
-    setLandmark(value);
+    return isValid;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
-      const formData = {
-        street: street,
-        landmark: landmark,
-      };
-      console.log("Form Data:", formData);
+      console.log("Form Data:", achievements);
       navigate("/Home");
+    }
+  };
+
+  const handleInputChange = (index, value) => {
+    const newAchievements = [...achievements];
+    newAchievements[index].text = value;
+    setAchievements(newAchievements);
+
+    const newErrors = [...errors];
+    newErrors[index].text = "";
+    setErrors(newErrors);
+  };
+
+  const addAchievement = () => {
+    if (achievements[achievements.length - 1].text.trim()) {
+      setAchievements([...achievements, { text: "" }]);
+      setErrors([...errors, { text: "" }]);
+      setShowValidationMessage(false);
+    } else {
+      setShowValidationMessage(true);
     }
   };
 
@@ -52,40 +58,42 @@ function Achieve() {
         <div className="bg-white p-8 rounded shadow-md max-w-md w-full">
           <h1 className="text-3xl font-semibold text-center text-black">Achievements of the company</h1>
           <form className="mt-6" onSubmit={handleSubmit}>
-            <div className="mb-4">
-              <p className="block text-sm font-medium text-black mb-2">
-                Achievement 1 <span className="text-red-500">*</span>
-              </p>
-              <textarea
-                placeholder="Enter your achievement"
-                rows="3"
-                type="text"
-                style={{ width: "100%" }} // Increase width of input field
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-slate-700 focus:border-slate-700 bg-white sm:text-sm mb-2"
-                value={street}
-                onChange={(e) => handleStreetChange(e.target.value)} // Updated onChange handler
-              />
-              {errors.street && <div className="text-red-500">{errors.street}</div>}
-            </div>
-            <div className="mb-4">
-              <p className="block text-sm font-medium text-black mb-2">
-                Achievement 2
-              </p>
-              <textarea
-                placeholder="Enter your achievement"
-                type="text"
-                rows="3"
-                style={{ width: "100%" }} // Increase width of input field
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-slate-700 focus:border-slate-700 bg-white sm:text-sm mb-2"
-                value={landmark}
-                onChange={(e) => handleLandmarkChange(e.target.value)} // Updated onChange handler
-              />
+            {achievements.map((achievement, index) => (
+              <div key={index} className="mb-4">
+                <p className="block text-sm font-medium text-black mb-2">
+                  Achievement {index + 1} {index === 0 && <span className="text-red-500">*</span>}
+                </p>
+                <textarea
+                  placeholder="Enter your achievement"
+                  rows="3"
+                  type="text"
+                  style={{ width: "100%" }}
+                  className={`mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-slate-700 focus:border-slate-700 bg-white sm:text-sm mb-2 ${errors[index].text ? "border-red-500" : ""}`}
+                  value={achievement.text}
+                  onChange={(e) => handleInputChange(index, e.target.value)}
+                />
+                {errors[index].text && <div className="text-red-500">{errors[index].text}</div>}
+              </div>
+            ))}
+            {showValidationMessage && (
+              <div className="mb-6">
+                <p className="text-red-500 text-sm">Please fill out the fields before adding another achievement.</p>
+              </div>
+            )}
+            <div className="flex justify-between items-center mb-6">
+              <button
+                type="button"
+                onClick={addAchievement}
+                className="text-m text-black hover:text-gray-900 hover:underline focus:outline-none cursor-pointer"
+              >
+                Add Achievement
+              </button>
             </div>
             <div className="mb-6 flex flex-row-reverse">
               <button
                 type="submit"
                 className="w-1/3 px-2 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-400 focus:outline-none focus:bg-blue-600"
-              > 
+              >
                 Next
               </button>
             </div>
