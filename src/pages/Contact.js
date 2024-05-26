@@ -25,7 +25,7 @@ function ContactForm() {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-white">
+    <div className="flex justify-center items-center min-h-screen bg-white ">
       <div className="bg-white p-8 rounded shadow-md w-full max-w-lg">
         <h2 className="text-3xl font-semibold text-center text-black mb-6">Connect to Catalyze </h2>
         <form onSubmit={handleSubmit}>

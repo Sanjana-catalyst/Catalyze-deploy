@@ -1,6 +1,6 @@
 import Navbar from "./Navbar";
 import React, { useState, useEffect } from "react";
-import Contact from './Contact'
+// import Contact from './Contact';
 
 function Landing() {
   const [chatIndex, setChatIndex] = useState(0);
@@ -8,24 +8,34 @@ function Landing() {
     {
       name: "User",
       time: "",
-      message: "You were the Chosen One!",
+      message: "Hello, what can i do here",
       status: "",
     },
-    { name: "Catalyze", time: "", message: "I hate you!", status: "" },
+    { name: "Catalyze", time: "", message: "We will let you know", status: "" },
     {
       name: "User",
       time: "",
-      message: "You were the Chosen One!",
+      message: "What's should i do at this moment?",
       status: "",
     },
-    { name: "Catalyze", time: "", message: "I hate you!", status: "" },
+    {
+      name: "Catalyze",
+      time: "",
+      message: "Do Signup for more details",
+      status: "",
+    },
     {
       name: "User",
       time: "",
-      message: "You were the Chosen One!",
+      message: "Where can i signup?",
       status: "",
     },
-    { name: "Catalyze", time: "", message: "I hate you!", status: "" },
+    {
+      name: "Catalyze",
+      time: "",
+      message: " You'll find the signup option in the top right corner. ",
+      status: "",
+    },
     // Add more chat objects as needed
   ]);
 
@@ -81,94 +91,212 @@ function Landing() {
     };
   }, []);
 
+  const [formData, setFormData] = useState({
+    fullName: "",
+    startupName: "",
+    phoneNumber: "",
+    email: "",
+    location: "",
+    message: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Handle form submission logic here
+    console.log("Form Data Submitted:", formData);
+  };
+
   return (
-    <div className="h-screen overflow-hidden overflow-y-auto">
+    <div
+      className="h-screen overflow-y-scroll"
+      style={{
+        overflowY: "scroll",
+        scrollbarWidth: "none",
+        msOverflowStyle: "none",
+      }}
+    >
+      <style>
+        {`
+          .no-scrollbar::-webkit-scrollbar {
+            display: none; /* Safari and Chrome */
+          }
+
+          .no-scrollbar {
+            -ms-overflow-style: none;  /* Internet Explorer 10+ */
+            scrollbar-width: none;  /* Firefox */
+          }
+        `}
+      </style>
       <Navbar />
-      <div className="flex flex-col md:flex-row justify-between mt-16 md:mt-0">
-        <div className="flex justify-center md:justify-start">
-          <div className="text-center md:text-left">
-            <h1 className="text-3xl md:text-5xl font-semibold mt-8 md:mt-60 ml-4 md:ml-40 text-black">
-              Connecting{" "}
-              <span
-                className="font-bold"
-                style={{ color: "#60a5fa", fontWeight: "bold" }}
-              >
-                {count.toLocaleString()}
-              </span>{" "}
-              <br />
-              people with outstanding <br />
-              Startups of <br />
-              <span style={{ color: "#60a5fa", fontWeight: "bold" }}>
-                {displayedText}
-              </span>
-            </h1>
-          </div>
-        </div>
-
-        <div className="" style={{ marginTop: "120px", marginRight: "50px" }}>
-          {chats.map((chat, index) => (
-            <div
-              key={index}
-              className={`flex ${
-                index % 2 === 0 ? "justify-start" : "justify-end"
-              } mb-2`}
-              style={{
-                display: index <= chatIndex ? "flex" : "none", // Display chat bubble only if its index is less than or equal to chatIndex
-              }}
-            >
-              {/* {index % 2 === 0 && (
-                <div
-                  className="chat-image avatar"
-                  style={{
-                    marginTop: "26px",
-                    marginRight: "6px",
-                    marginLeft: "6px",
-                  }}
+      <div className="vh-100">
+        <div className="flex flex-col md:flex-row justify-between mt-16 md:mt-0">
+          <div className="flex justify-center md:justify-start ">
+            <div className="text-center md:text-left ">
+              <h1 className="text-3xl md:text-5xl font-semibold mt-8 md:mt-60 ml-4 md:ml-40 text-black">
+                Connecting{" "}
+                <span
+                  className="font-bold"
+                  style={{ color: "#60a5fa", fontWeight: "bold" }}
                 >
-                  <div className="w-10 rounded-full">
-                    <img
-                      alt="Tailwind CSS chat bubble component"
-                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCxFrOAXsjjDeftyujtCiOyppmEtna2lTdsKDm2T5ahw&s"
-                    />
-                  </div>
-                </div>
-              )} */}
-              <div
-                className={`chat ${
-                  index % 2 === 0 ? "chat-start" : "chat-end"
-                } mr-2`}
-                style={{
-                  marginLeft: index % 2 === 0 ? "-0px" : "10px",
-                  marginRight: index % 2 === 0 ? "180px" : "3px",
+                  {count.toLocaleString()}
+                </span>{" "}
+                <br />
+                people with outstanding <br />
+                Startups of <br />
+                <span style={{ color: "#60a5fa", fontWeight: "bold" }}>
+                  {displayedText}
+                </span>
+              </h1>
+            </div>
+          </div>
 
-                  marginBottom: "-8px", // Add margin bottom to separate chat bubbles
+          <div style={{ marginTop: "120px", marginRight: "50px" }}>
+            {chats.map((chat, index) => (
+              <div
+                key={index}
+                className={`flex ${
+                  index % 2 === 0 ? "justify-start" : "justify-end"
+                } mb-2`}
+                style={{
+                  display: index <= chatIndex ? "flex" : "none",
                 }}
               >
-                <div className="chat-header">
-                  {chat.name}
-                  <time className="text-xs opacity-50">{chat.time}</time>
-                </div>
-                <div className="chat-bubble text-white">{chat.message}</div>
-                <div className="chat-footer opacity-50">{chat.status}</div>
-              </div>
-              {/* {index % 2 !== 0 && (
                 <div
-                  className="chat-image avatar"
-                  style={{ marginTop: "6px", marginLeft: "6px" }}
+                  className={`chat ${
+                    index % 2 === 0 ? "chat-start" : "chat-end"
+                  } mr-2`}
+                  style={{
+                    marginLeft: index % 2 === 0 ? "-0px" : "10px",
+                    marginRight: index % 2 === 0 ? "180px" : "3px",
+                    marginBottom: "-8px",
+                  }}
                 >
-                  <div className="w-10 rounded-full">
-                    <img
-                      alt="Tailwind CSS chat bubble component"
-                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTCxFrOAXsjjDeftyujtCiOyppmEtna2lTdsKDm2T5ahw&s"
-                    />
+                  <div className="chat-header">
+                    {chat.name}
+                    <time className="text-xs opacity-50">{chat.time}</time>
                   </div>
+                  <div className="chat-bubble text-white">{chat.message}</div>
+                  <div className="chat-footer opacity-50">{chat.status}</div>
                 </div>
-              )} */}
-            </div>
-          ))}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-      <Contact />
+
+      <div className="flex justify-center items-center min-h-screen bg-slate-100 ">
+        <div className="bg-white p-8 rounded shadow-md w-full max-w-lg">
+          <h2 className="text-3xl font-semibold text-center text-black mb-6">
+            Connect to Catalyze{" "}
+          </h2>
+          <form onSubmit={handleSubmit}>
+            <div className="mb-4">
+              <label htmlFor="fullName" className="block text-gray-700">
+                Full Name
+              </label>
+              <input
+                placeholder="Enter your name"
+                type="text"
+                id="fullName"
+                name="fullName"
+                value={formData.fullName}
+                onChange={handleChange}
+                className="mt-1 block w-full text-black px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-slate-700 focus:border-slate-700 bg-white sm:text-sm"
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label htmlFor="startupName" className="block text-gray-700">
+                Startup Name
+              </label>
+              <input
+                placeholder="Enter your Startup name"
+                type="text"
+                id="startupName"
+                name="startupName"
+                value={formData.startupName}
+                onChange={handleChange}
+                className="mt-1 block w-full text-black px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-slate-700 focus:border-slate-700 bg-white sm:text-sm"
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label htmlFor="phoneNumber" className="block text-gray-700">
+                Phone Number
+              </label>
+              <input
+                placeholder="Enter your phone number"
+                type="tel"
+                id="phoneNumber"
+                name="phoneNumber"
+                value={formData.phoneNumber}
+                onChange={handleChange}
+                className="mt-1 block w-full text-black px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-slate-700 focus:border-slate-700 bg-white sm:text-sm"
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label htmlFor="email" className="block text-gray-700">
+                Email
+              </label>
+              <input
+                placeholder="Enter your email"
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                className="mt-1 block w-full text-black px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-slate-700 focus:border-slate-700 bg-white sm:text-sm"
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label htmlFor="location" className="block text-gray-700">
+                Location
+              </label>
+              <input
+                placeholder="Enter your location"
+                type="text"
+                id="location"
+                name="location"
+                value={formData.location}
+                onChange={handleChange}
+                className="mt-1 block w-full text-black px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-slate-700 focus:border-slate-700 bg-white sm:text-sm"
+                required
+              />
+            </div>
+            <div className="mb-4">
+              <label htmlFor="message" className="block text-gray-700">
+                Message
+              </label>
+              <textarea
+                placeholder="Enter your message"
+                id="message"
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                className="mt-1 block w-full text-black px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-slate-700 focus:border-slate-700 bg-white sm:text-sm"
+                rows="4"
+                required
+              ></textarea>
+            </div>
+            <button
+              type="submit"
+              className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600"
+            >
+              Let's connect
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
   );
 }

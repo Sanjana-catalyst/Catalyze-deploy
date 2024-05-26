@@ -46,7 +46,7 @@ function Navbar() {
             <div className="absolute top-full right-0 bg-white shadow-md w-full">
               <button onClick={() => navigateTo('/profile')} className={`block w-full py-2 px-4 text-lg ${isActive('/profile') ? 'text-blue-500' : 'text-black'} hover:text-blue-500 hover:underline focus:outline-none`}>Profile</button>
               <button onClick={() => navigateTo('/settings')} className={`block w-full py-2 px-4 text-lg ${isActive('/settings') ? 'text-blue-500' : 'text-black'} hover:text-blue-500 hover:underline focus:outline-none`}>Settings</button>
-              <button onClick={() => navigateTo('/')} className="block w-full py-2 px-4 text-lg text-black hover:bg-gray-100 focus:outline-none">Logout</button>
+              <button onClick={() => navigateTo('/profile')} className={`block w-full py-2 px-4 text-lg ${isActive('/') ? 'text-blue-500' : 'text-black'} hover:text-blue-500 hover:underline focus:outline-none`}>Logout</button>
             </div>
           )}
         </div>
@@ -59,7 +59,7 @@ function Navbar() {
           </button>
           <button 
             onClick={() => navigateTo('/')} 
-            className="btn btn-primary rounded-md bg-blue-600 hover:bg-blue-400 px-4 py-2 text-lg text-white focus:outline-none"
+            className={`text-lg font-semibold ${isActive('/') ? 'text-blue-500' : 'text-black'} hover:text-blue-500 hover:underline focus:outline-none`}
           >
             Logout
           </button>
