@@ -11,7 +11,7 @@ import Podcast4 from '../pages/Podcast4.jpg';
 import Hero1 from '../pages/Hero1.jpg';
 import Hero2 from '../pages/Hero2.jpg';
 import Hero3 from '../pages/Hero3.jpg';
-import Hero4 from '../pages/Hero4.jpg'
+import Hero4 from '../pages/Hero4.jpg';
 
 function Dashboard() {
   const [currentPodcastImage, setCurrentPodcastImage] = useState(Podcast1);
@@ -21,7 +21,7 @@ function Dashboard() {
   const networkImages = [Network1, Network2, Network3, Network4];
   const heroImages = [Hero1, Hero2, Hero3, Hero4];
 
-  const delay = 3000; // 3 seconds delay between image changes
+  const delay = 6000; // 3 seconds delay between image changes
 
   useEffect(() => {
     const podcastInterval = setInterval(() => {
@@ -31,29 +31,33 @@ function Dashboard() {
       });
     }, delay);
 
-    return () => clearInterval(podcastInterval); // Cleanup function for podcast interval
-  }, []);
+    const networkTimeout = setTimeout(() => {
+      const networkInterval = setInterval(() => {
+        setCurrentNetworkImage(prevImage => {
+          const currentIndex = networkImages.indexOf(prevImage);
+          return networkImages[(currentIndex + 1) % networkImages.length];
+        });
+      }, delay);
 
-  useEffect(() => {
-    const networkInterval = setInterval(() => {
-      setCurrentNetworkImage(prevImage => {
-        const currentIndex = networkImages.indexOf(prevImage);
-        return networkImages[(currentIndex + 1) % networkImages.length];
-      });
-    }, delay);
+      return () => clearInterval(networkInterval); // Cleanup function for network interval
+    }, 2000); // Start 1 second after podcast interval
 
-    return () => clearInterval(networkInterval); // Cleanup function for network interval
-  }, []);
+    const heroTimeout = setTimeout(() => {
+      const heroInterval = setInterval(() => {
+        setCurrentHeroImage(prevImage => {
+          const currentIndex = heroImages.indexOf(prevImage);
+          return heroImages[(currentIndex + 1) % heroImages.length];
+        });
+      }, delay);
 
-  useEffect(() => {
-    const heroInterval = setInterval(() => {
-      setCurrentHeroImage(prevImage => {
-        const currentIndex = heroImages.indexOf(prevImage);
-        return heroImages[(currentIndex + 1) % heroImages.length];
-      });
-    }, delay);
+      return () => clearInterval(heroInterval); // Cleanup function for hero interval
+    }, 4000); // Start 2 seconds after podcast interval
 
-    return () => clearInterval(heroInterval); // Cleanup function for hero interval
+    return () => {
+      clearInterval(podcastInterval);
+      clearTimeout(networkTimeout);
+      clearTimeout(heroTimeout);
+    };
   }, []);
 
   return (
@@ -66,7 +70,7 @@ function Dashboard() {
           <div className="card w-full md:w-96 h-80 bg-white shadow-xl" style={{ backgroundImage: `url(${currentPodcastImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
             <button type="button" className="h-full w-full rounded-lg hover:bg-opacity-75">
               <div className="card-body p-4">
-                <div className="text-white font-semibold text-xl absolute top-0 left-0 p-4">
+                <div className="text-black font-semibold text-2xl absolute top-0 left-0 p-4">
                   Podcast
                 </div>
               </div>
@@ -78,7 +82,7 @@ function Dashboard() {
           <div className="card w-full md:w-96 h-80 bg-white shadow-xl" style={{ backgroundImage: `url(${currentNetworkImage})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
             <button type="button" className="h-full w-full rounded-lg hover:bg-opacity-75">
               <div className="card-body p-4">
-                <div className="text-white font-semibold text-xl absolute top-0 left-0 p-4">
+                <div className="text-white font-semibold text-4xl absolute top-0 left-0 p-4">
                   Networking
                 </div>
               </div>

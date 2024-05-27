@@ -136,8 +136,8 @@ function Landing() {
         `}
       </style>
       <Navbar />
-      <div className="vh-100">
-        <div className="flex flex-col md:flex-row justify-between mt-16 md:mt-0">
+      <div className=" h-[100%]">
+        <div className="flex flex-col md:flex-row justify-between mt-16 md:mt-0 items-center ">
           <div className="flex justify-center md:justify-start ">
             <div className="text-center md:text-left ">
               <h1 className="text-3xl md:text-5xl font-semibold mt-8 md:mt-60 ml-4 md:ml-40 text-black">
